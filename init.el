@@ -34,13 +34,27 @@
 ;; spaceline
 (use-package spaceline
   :ensure t)
-  
 (use-package spaceline-config
   :config
-  (spaceline-emacs-theme))
+  (spaceline-spacemacs-theme))
+
+;; nyan mode
+(use-package nyan-mode
+  :ensure t
+  :init (nyan-mode 1))
 
 ;; company
 (use-package company
   :ensure t
+  :init (global-company-mode))
+
+;; yasnippet
+(use-package yasnippet
+  :ensure t
   :config
-  (global-company-mode))
+  (yas-global-mode 1))
+
+;; flycheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
