@@ -27,10 +27,20 @@
 
 ;; evil mode
 (use-package evil
+  :ensure t
   :config
   (evil-mode 1))
 
 ;; spaceline
+(use-package spaceline
+  :ensure t)
+  
 (use-package spaceline-config
   :config
   (spaceline-emacs-theme))
+
+;; company
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode))
