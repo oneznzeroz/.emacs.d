@@ -20,7 +20,6 @@
 ;; less gui
 (setq initial-scratch-message "")
 (setq inhibit-splash-screen t)
-(load-theme 'misterioso)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -30,6 +29,20 @@
   :ensure t
   :config
   (evil-mode 1))
+;; linum rel
+(use-package linum-relative
+  :ensure t
+  :config
+  (global-set-key [f12] 'linum-relative-toggle) ;; toggle with f12
+  (setq linum-relative-current-symbol "")
+  :init
+  (linum-relative-global-mode)) ;; hybrid
+
+;; material theme
+(use-package material-theme
+  :ensure t
+  :config
+  (load-theme 'material t))
 
 ;; spaceline
 (use-package spaceline
@@ -41,12 +54,19 @@
 ;; nyan mode
 (use-package nyan-mode
   :ensure t
+  :config
+  (setq nyan-wavy-trail t)
+  (setq nyan-animate-nyancat t)
   :init (nyan-mode 1))
 
 ;; company
 (use-package company
   :ensure t
   :init (global-company-mode))
+;; company-tern
+(use-package company-tern
+  :ensure t
+  :init (add-to-list 'company-backends 'company-tern))
 
 ;; yasnippet
 (use-package yasnippet
