@@ -1,10 +1,3 @@
-;;; package --- Summary:
-
-;;; Commentary:
-; this is self installing, all dependencies are handled automatically
-
-;;; Code:
-
 ;; more repos
 (require 'package)
 (setq package-enable-at-startup nil)
