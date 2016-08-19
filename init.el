@@ -1,3 +1,10 @@
+;;; package --- Summary:
+
+;;; Commentary:
+; this is self installing, all dependencies are handled automatically
+
+;;; Code:
+
 ;; more repos
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -34,6 +41,10 @@
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 
+;; Electric
+(electric-indent-mode 1)
+(electric-pair-mode 1)
+
 ;; tabs => 2 spaces
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -49,20 +60,20 @@
   :ensure t
   :config
   (evil-mode 1))
-;; evil surround
 
+;; evil surround
 (use-package evil-surround
   :ensure t
   :config
   (global-evil-surround-mode 1))
+
 ;; linum rel
 (use-package linum-relative
   :ensure t
   :config
   (global-set-key [f12] 'linum-relative-toggle) ;; toggle with f12
   (setq linum-relative-current-symbol "")
-  :init
-  (linum-relative-global-mode)) ;; hybrid
+  :init (linum-relative-global-mode)) ;; hybrid
 
 ;; helm
 (use-package helm
@@ -73,8 +84,7 @@
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (global-set-key (kbd "C-x C-p") 'helm-projectile-find-file)
-  :init
-  (helm-mode 1))
+  :init (helm-mode 1))
 
 ;; helm projectile
 (use-package helm-projectile
@@ -129,5 +139,5 @@
 ;; flycheck
 (use-package flycheck
   :ensure t
-  :init
-  (global-flycheck-mode))
+  :init (global-flycheck-mode))
+
