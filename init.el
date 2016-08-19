@@ -24,11 +24,37 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
+;; handle backups 
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+
+;; handle prompts
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+            kill-buffer-query-functions))
+
+;; tabs => 2 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+;; smooth scrolling
+(setq scroll-conservatively 101) ;; move minimum when cursor exits view, instead of recentering
+(setq mouse-wheel-scroll-amount '(1)) ;; mouse scroll moves 1 line at a time, instead of 5 lines
+(setq mouse-wheel-progressive-speed nil) ;; on a long mouse scroll keep scrolling by 1 line
+(setq scroll-margin 5)
+
 ;; evil mode
 (use-package evil
   :ensure t
   :config
   (evil-mode 1))
+;; evil surround
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 ;; linum rel
 (use-package linum-relative
   :ensure t
@@ -38,11 +64,25 @@
   :init
   (linum-relative-global-mode)) ;; hybrid
 
-;; material theme
-(use-package material-theme
+;; helm
+(use-package helm
   :ensure t
   :config
-  (load-theme 'material t))
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  :init
+  (helm-mode 1))
+
+;; helm projectile
+(use-package helm-projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+  (setq projectile-indexing-method 'alien))
 
 ;; spaceline
 (use-package spaceline
@@ -50,19 +90,30 @@
 (use-package spaceline-config
   :config
   (spaceline-spacemacs-theme))
-
-;; nyan mode
-(use-package nyan-mode
+;; theme
+(use-package moe-theme 
   :ensure t
   :config
-  (setq nyan-wavy-trail t)
-  (setq nyan-animate-nyancat t)
-  :init (nyan-mode 1))
+  (load-theme 'moe-dark t)
+  (moe-theme-set-color 'green)
+  (powerline-moe-theme))
+
+;; sass
+(use-package scss-mode
+  :ensure t
+  :config
+  (autoload 'scss-mode "scss-mode")
+  (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+  (add-to-list 'auto-mode-alist '("\\.sass\\'" . scss-mode)))
 
 ;; company
 (use-package company
   :ensure t
+  :config
+  (setq company-idle-delay 0.3)
+  (setq company-minimum-prefix-length 2)
   :init (global-company-mode))
+
 ;; company-tern
 (use-package company-tern
   :ensure t
@@ -77,4 +128,5 @@
 ;; flycheck
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode))
+  :init
+  (global-flycheck-mode))

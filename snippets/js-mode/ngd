@@ -1,0 +1,14 @@
+#contributor : Mark Sorce <msorce@gmail.com>
+#name : ng-directive
+#group :
+# --
+angular.module('$1')
+.directive('$2', function() {
+  return {
+    restrict: 'A',
+    template$3{Url}: '$4',
+    link: function(scope, element, attrs){
+      $5
+    }
+  };
+});

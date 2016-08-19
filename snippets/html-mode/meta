@@ -1,0 +1,12 @@
+#contributor : Mark Sorce <marksorce@gmail.com>
+#group : meta
+#name : <meta name="..." content="..." />
+# --
+<meta name="${1:generator}" content="${2:content}" />
+
+
+#contributor : Mark Sorce <marksorce@gmail.com>
+#group : meta
+#name : <meta name="viewport" content="width=device-width, initial-scale=1.0">
+# --
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
