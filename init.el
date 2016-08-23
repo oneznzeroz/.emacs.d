@@ -24,8 +24,11 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
-;; handle backups 
-(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; handle prompts
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -37,6 +40,8 @@
 ;; Electric
 (electric-indent-mode 1)
 (electric-pair-mode 1)
+;; commenting
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 
 ;; tabs => 2 spaces
 (setq-default indent-tabs-mode nil)
