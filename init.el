@@ -64,6 +64,12 @@
   :ensure t
   :config
   (global-evil-surround-mode 1))
+;; web mode
+(use-package web-mode
+  :ensure t
+  :config  
+  (setq web-mode-enable-current-element-highlight t)
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 ;; linum rel
 (use-package linum-relative
