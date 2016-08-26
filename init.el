@@ -127,6 +127,10 @@
   (load-theme 'moe-dark t)
   (moe-theme-set-color 'green)
   (powerline-moe-theme))
+;; nyan mode
+(use-package nyan-mode
+  :ensure t
+  :init (nyan-mode))
 
 ;; sass
 (use-package scss-mode
