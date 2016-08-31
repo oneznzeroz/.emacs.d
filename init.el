@@ -40,10 +40,13 @@
 (tool-bar-mode 0)
 
 ;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+;(setq backup-directory-alist
+;      `((".*" . ,temporary-file-directory)))
+;(setq auto-save-file-name-transforms
+;      `((".*" ,temporary-file-directory t)))
 
 ;; handle prompts
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -83,8 +86,11 @@
 (use-package web-mode
   :ensure t
   :config  
-  (setq web-mode-enable-current-element-highlight t)
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+  
+  (set-face-background 'web-mode-current-element-highlight-face "yellow")
+  (set-face-attribute 'web-mode-html-tag-face nil :foreground "OliveDrab1")
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-enable-current-element-highlight t))
 
 ;; linum rel
 (use-package linum-relative
