@@ -39,14 +39,22 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
-;; store all backup and autosave files in the tmp dir
+;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
+;;(set-frame-parameter (selected-frame) 'alpha <both>)
+(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+                                        ;highlights
+                                        ;(highlight-tabs)
+                                        ;(highlight-trailing-whitespace)
+
+;; backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
-;(setq backup-directory-alist
-;      `((".*" . ,temporary-file-directory)))
-;(setq auto-save-file-name-transforms
-;      `((".*" ,temporary-file-directory t)))
+                                        ;(setq backup-directory-alist
+                                        ;      `((".*" . ,temporary-file-directory)))
+                                        ;(setq auto-save-file-name-transforms
+                                        ;      `((".*" ,temporary-file-directory t)))
 
 ;; handle prompts
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -86,7 +94,7 @@
 (use-package web-mode
   :ensure t
   :config  
-  
+  (setq web-mode-markup-indent-offset 2) 
   (set-face-background 'web-mode-current-element-highlight-face "yellow")
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "OliveDrab1")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
