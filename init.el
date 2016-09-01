@@ -135,12 +135,16 @@
   :config
   (spaceline-spacemacs-theme))
 ;; theme
-(use-package moe-theme 
+(use-package cyberpunk-theme
   :ensure t
   :config
-  (load-theme 'moe-dark t)
-  (moe-theme-set-color 'green)
-  (powerline-moe-theme))
+  )
+;; (use-package moe-theme 
+;;   :ensure t
+;;   :config
+;;   (load-theme 'moe-dark t)
+;;   (moe-theme-set-color 'green)
+;;   (powerline-moe-theme))
 ;; nyan mode
 (use-package nyan-mode
   :ensure t
