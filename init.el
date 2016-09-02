@@ -96,7 +96,8 @@
   :config  
   (setq web-mode-markup-indent-offset 2) 
   (set-face-background 'web-mode-current-element-highlight-face "yellow")
-  (set-face-attribute 'web-mode-html-tag-face nil :foreground "OliveDrab1")
+  (set-face-attribute 'web-mode-html-tag-face nil :foreground "magenta")
+  (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "pink")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (setq web-mode-enable-current-element-highlight t))
 
@@ -133,6 +134,7 @@
   :ensure t)
 (use-package spaceline-config
   :config
+  (set-face-attribute 'spaceline-evil-normal nil :foreground "black")
   (spaceline-spacemacs-theme))
 ;; theme
 (use-package cyberpunk-theme

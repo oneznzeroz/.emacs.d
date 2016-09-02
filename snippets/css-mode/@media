@@ -1,0 +1,8 @@
+
+#contributor : Mark Sorce <marksorce@gmail.com>
+#group : @media
+#name : @media
+# --
+@media screen and (min-width: 768px){
+       ${0}
+}
