@@ -1,15 +1,15 @@
-;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; 
+;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;;
 ;;                  ___                                   ___                    ;;
 ;;    ___          /__/\        ___           ___        /  /\                   ;;
 ;;   /  /\         \  \:\      /  /\         /  /\      /  /:/_                  ;;
 ;;  /  /:/          \  \:\    /  /:/        /  /:/     /  /:/ /\    ___     ___  ;;
-;; /__/::\      _____\__\:\  /__/::\       /  /:/     /  /:/ /:/_  /__/\   /  /\ ;; 
+;; /__/::\      _____\__\:\  /__/::\       /  /:/     /  /:/ /:/_  /__/\   /  /\ ;;
 ;; \__\/\:\__  /__/::::::::\ \__\/\:\__   /  /::\    /__/:/ /:/ /\ \  \:\ /  /:/ ;;
 ;;    \  \:\/\ \  \:\~~\~~\/    \  \:\/\ /__/:/\:\   \  \:\/:/ /:/  \  \:\  /:/  ;;
 ;;     \__\::/  \  \:\  ~~~      \__\::/ \__\/  \:\   \  \::/ /:/    \  \:\/:/   ;;
 ;;     /__/:/    \  \:\          /__/:/       \  \:\   \  \:\/:/      \  \::/    ;;
 ;;     \__\/      \  \:\         \__\/         \__\/    \  \::/        \__\/     ;;
-;;                 \__\/                                 \__\/                   ;; 
+;;                 \__\/                                 \__\/                   ;;
 ;;                      ~ Configuration by: Mark Sorce ~                         ;;
 ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;;
 
@@ -43,18 +43,23 @@
 ;;(set-frame-parameter (selected-frame) 'alpha <both>)
 (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
 (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
-                                        ;highlights
-                                        ;(highlight-tabs)
-                                        ;(highlight-trailing-whitespace)
+
+;highlights
+;(highlight-tabs)
+;(highlight-trailing-whitespace)
+
+(use-package magit
+  :ensure t
+  :config )
 
 ;; backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
-                                        ;(setq backup-directory-alist
-                                        ;      `((".*" . ,temporary-file-directory)))
-                                        ;(setq auto-save-file-name-transforms
-                                        ;      `((".*" ,temporary-file-directory t)))
+;(setq backup-directory-alist
+;`((".*" . ,temporary-file-directory)))
+;(setq auto-save-file-name-transforms
+;`((".*" ,temporary-file-directory t)))
 
 ;; handle prompts
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -66,12 +71,30 @@
 ;; Electric
 (electric-indent-mode 1)
 (electric-pair-mode 1)
+
 ;; commenting
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 
 ;; tabs => 2 spaces
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
+;; show shitespace
+(global-whitespace-mode 1)
+
+(defvar html-indent-offset)
+(setq html-indent-offset 2)
+
+(defvar js-indent-level)
+(setq js-indent-level 2)
+
+(defvar css-indent-offset)
+(setq css-indent-offset 2)
+
+(defvar javascript-indent-level)
+(setq javascript-indent-level 2)
+
+(defvar scss-indent-offset)
+(setq scss-indent-offset 2)
 
 ;; smooth scrolling
 (setq scroll-conservatively 101) ;; move minimum when cursor exits view, instead of recentering
@@ -93,8 +116,8 @@
 ;; web mode
 (use-package web-mode
   :ensure t
-  :config  
-  (setq web-mode-markup-indent-offset 2) 
+  :config
+  (setq web-mode-markup-indent-offset 2)
   (set-face-background 'web-mode-current-element-highlight-face "yellow")
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "magenta")
   (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "pink")
@@ -141,7 +164,7 @@
   :ensure t
   :config
   )
-;; (use-package moe-theme 
+;; (use-package moe-theme
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'moe-dark t)
@@ -164,8 +187,8 @@
 (use-package company
   :ensure t
   :config
-  (setq company-idle-delay 0.3)
-  (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay 0.1)
+  (setq company-minimum-prefix-length 1)
   :init (global-company-mode))
 
 ;; company-tern
